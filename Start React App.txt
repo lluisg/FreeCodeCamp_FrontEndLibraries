@@ -1,0 +1,33 @@
+npx create-react-app XXX
+cd XXX
+npm start
+
+where XXX is the name of the project
+
+
+---------------------------- INSTALL BOOTSTRAP -------------------------------
+
+npm install bootstrap
+npm install jquery popper.js
+
+add at the start of the index.js file
+	// import 'bootstrap/dist/css/bootstrap.css';
+	import 'bootstrap/dist/css/bootstrap.min.css';
+	import 'bootstrap/dist/js/bootstrap.bundle.min';
+	import $ from 'jquery';
+	import Popper from 'popper.js';
+
+
+---------------------------- INSTALL FONTAWESOME -------------------------------
+
+npm i -S @fortawesome/fontawesome-svg-core @fortawesome/react-fontawesome @fortawesome/free-regular-svg-icons @fortawesome/free-solid-svg-icons @fortawesome/free-brands-svg-icons
+
+add at the start of the App.js file
+	import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+	import { XXX } from "@fortawesome/free-solid-svg-icons";
+	import { XXX } from "@fortawesome/free-brands-svg-icons"  --> if its a brand
+
+where you want that icon
+        <FontAwesomeIcon icon={XXX} />
+
+where XXX is the name of the icon you are interested
