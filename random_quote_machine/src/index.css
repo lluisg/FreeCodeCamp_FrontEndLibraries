@@ -1,0 +1,57 @@
+html{
+  font-size: 10;
+}
+
+html, body, #root{
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+#text{
+  font-weight: 500;
+  font-size: 1.75em;
+}
+
+#author{
+  font-size: 1.1em;
+}
+
+#text, #author{
+  transition-property: opacity;
+  transition-duration: 0.5s;
+  transition-timing-function: ease;
+}
+
+.btn, #container-page{
+  transition-property: background-color;
+  transition-duration: 0.5s;
+  transition-timing-function: ease;
+}
+
+#text a, #text i, #author a{
+  transition-property: color;
+  transition-duration: 0.5s;
+  transition-timing-function: ease;
+}
+
+.btn, .btn i{
+  color: white !important;
+}
+
+#my_ident{
+  font-size: 0.8em;
+  color: white;
+}
