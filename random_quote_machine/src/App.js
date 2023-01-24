@@ -1,16 +1,26 @@
 import logo from './logo.svg';
 import './App.css';
-import QuoteComponent from './Components/QuoteComponent.js';
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHome, faFire } from "@fortawesome/free-solid-svg-icons";
+// for React
+import React, { useState, useEffect, useReducer } from 'react';
+// for Redux
+import { Provider, useSelector, useDispatch} from 'react-redux'
+import { Container } from './Redux/container';
+import { configureStore } from '@reduxjs/toolkit'
+import { quoteReducer } from './Redux/quoteReducer'
 
-import React, { useState, useEffect } from 'react';
+function App() { 
 
-function App() {
-  
+  const myStore = configureStore({
+    reducer: quoteReducer,
+    devTools: process.env.NODE_ENV !== 'production'
+  })
+
   return (
-    <QuoteComponent />
+    // <Provider store={store}>
+    <Provider store={myStore}>
+      <Container />
+    </Provider>
   );
 }
 

@@ -31,3 +31,11 @@ where you want that icon
         <FontAwesomeIcon icon={XXX} />
 
 where XXX is the name of the icon you are interested
+
+
+---------------------------- REDUX -------------------------------
+go to 
+	https://github.com/reduxjs/redux-devtools/tree/main/extension#2-for-firefox
+where there are the instructions
+
+
