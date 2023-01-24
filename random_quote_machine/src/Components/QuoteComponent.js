@@ -126,6 +126,7 @@ class QuoteComponent extends React.Component {
   render() {
     return (
       <div className="container-fluid h-100" style={{backgroundColor:this.props.color}} id="container-page">
+        <a href="https://random-quote-machine.freecodecamp.rocks/" target="_blank">original web</a>
         <div className="row h-100 align-items-center justify-content-center">
           <div className="col-sm-4 p-0" id="quote-box">
             <div id="quote-container" className="bg-light p-5 rounded">
