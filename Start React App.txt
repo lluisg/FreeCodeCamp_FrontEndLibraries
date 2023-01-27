@@ -34,8 +34,31 @@ where XXX is the name of the icon you are interested
 
 
 ---------------------------- REDUX -------------------------------
-go to 
-	https://github.com/reduxjs/redux-devtools/tree/main/extension#2-for-firefox
-where there are the instructions
+install
+	npm install redux
+	npm install react-redux
+	npm install @reduxjs/toolkit
 
+add to the App.js
+	import { Provider, useSelector, useDispatch} from 'react-redux'
+	import { configureStore } from '@reduxjs/toolkit'
+	import { Container } from './Redux/container';
+also add the code:
+
+function App() { 
+
+  const myStore = configureStore({
+    reducer: Reducer,
+    devTools: process.env.NODE_ENV !== 'production'
+  })
+
+  return (
+    // <Provider store={store}>
+    <Provider store={myStore}>
+      <Container />
+    </Provider>
+  );
+}
+
+where Container and Reducer are files you created accordingly
 

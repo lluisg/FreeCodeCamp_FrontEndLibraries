@@ -2,6 +2,11 @@
   --blue-header: #4aa3a3;
   --blue-bg:#87b5b5;
   --blue-bg-blocks: #c0d8d8;
+  --blue-btn: #56e2b1;
+}
+
+*, *::after, *::before {
+       box-sizing: border-box;
 }
 
 html{
@@ -53,24 +58,63 @@ code {
   text-decoration: none;
 }
 
-.editor-div, .preview-div{
-  box-shadow: 0 0 10px 2px rgba(0,0,0,0.4);
-
-
-  
-}
-.editor-div{
-  width: 39vw;
-  height: 33vh;
+.resize-btn:hover{
+  color: var(--blue-btn);
+  cursor: pointer;
 }
 
-.preview-div{
-  width: 50vw;
-  height: auto;
+#editor-div, #preview-div{
+  box-shadow: 0 0 10px 2px rgba(0,0,0,0.5);
 }
 
-#editor{
+#editor-div{
+  width: 600px;
+  max-width: 90%;
+  /* height: 33vh; */
+}
+
+#preview-div{
+  width: 800px;
+  max-width: 90%;
+  /* height: auto; */
+}
+
+#editor, #preview{
   width: 100%;
-  /* height: 100%; */
+  height: auto;
   background-color: var(--blue-bg-blocks);
+}
+
+#editor {
+  width: 100%;
+  height: 200px;
+  min-height: 40%;
+  display: block;
+  border: none;
+  overflow: auto;
+  outline: none;
+
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+
+}
+
+button{
+  background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+
+.hidden{
+  display: none;
+  visibility: hidden;
+}
+.maximized{
+  height: 100vh !important;
+  background-color: green !important;
 }

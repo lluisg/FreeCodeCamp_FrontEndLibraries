@@ -7,6 +7,7 @@ import React, { useState, useEffect, useReducer } from 'react';
 import { Provider, useSelector, useDispatch} from 'react-redux'
 import { Container } from './Redux/container';
 import { configureStore } from '@reduxjs/toolkit'
+
 import { quoteReducer } from './Redux/quoteReducer'
 
 function App() { 
