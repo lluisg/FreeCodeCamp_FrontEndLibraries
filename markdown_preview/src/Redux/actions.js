@@ -1,46 +1,20 @@
-const CHANGEQUOTE = "CHANGE QUOTE"
-const LOWEROPACITY = "LOWER OPACITY"
-const INCREASEOPACITY = "INCREASE OPACITY"
+const CHANGETEXT = "CHANGE TEXT"
+const CHANGEWINDOW = "CHANGE WINDOW SIZE"
 
-export function changeQuote(quote, author) {
+export function changeText(input) {
   return {
-    type: CHANGEQUOTE,
+    type: CHANGETEXT,
     payload: {
-      quote: quote,
-      author: author
+      text: input
     }
   }
 }
 
-export function lowerOpacity() {
+export function changeWindow(windowBig) {
   return {
-    type: LOWEROPACITY,
+    type: CHANGEWINDOW,
+    payload: {
+      window: windowBig
+    }
   }
 }
-
-export function incrementOpacity() {
-  return {
-    type: INCREASEOPACITY,
-  }
-}
-
-// -------- OLD VERSIONS ----------------------------------
-// export const changeQuote = (quote, author) => {
-//   return {
-//     type: CHANGEQUOTE,
-//     quote: quote,
-//     author: author
-//   }
-// }
-
-// export const lowerOpacity = () => {
-//   return {
-//     type: LOWEROPACITY,
-//   }
-// }
-
-// export const incrementOpacity = () => {
-//   return {
-//     type: INCREASEOPACITY,
-//   }
-// }

@@ -1,23 +1,20 @@
 import { connect } from 'react-redux';
 
-import QuoteComponent from '../Components/QuoteComponent';
-import { changeQuote, lowerOpacity, incrementOpacity } from './actions'
+import MarkdownComponent from '../Components/MarkdownComponent';
+import { changeText, changeWindow } from './actions'
 
 const mapStateToProps = state => {
   return {
-    quote: state.quote,
-    author: state.author,
-    opacity: state.opacity,
-    color: state.color
+    input: state.input,
+    window: state.window,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    submitChangeQuote: (quote, author) => {dispatch(changeQuote(quote, author))},
-    submitLowerOpacity: (quote, author) => {dispatch(lowerOpacity())},
-    submitIncrementOpacity: (quote, author) => {dispatch(incrementOpacity())}
+    submitChangeText: (input) => {dispatch(changeText(input))},
+    submitChangeWindow: (window) => {dispatch(changeWindow(window))},
   };
 };
 
-export const Container = connect(mapStateToProps, mapDispatchToProps)(QuoteComponent);
+export const Container = connect(mapStateToProps, mapDispatchToProps)(MarkdownComponent);

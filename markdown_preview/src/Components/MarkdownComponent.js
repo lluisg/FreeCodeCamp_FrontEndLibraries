@@ -60,25 +60,18 @@ const Previewer = (props) => {
 class MarkdownPreviewer extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      input: "",
-      isBig: 'None',
-    };
     this.handleChange = this.handleChange.bind(this);
     this.getMarkdown = this.getMarkdown.bind(this);
     this.Resize = this.Resize.bind(this);
   }
 
   getMarkdown() {
-    let x = marked(this.state.input);
+    let x = marked(this.props.input);
     return {__html : x};
   }
 
   handleChange (event) {
-    this.setState({
-      input: event.target.value,
-    });
-    console.log(this.state.clean_input)
+    this.props.submitChangeText(event.target.value)
   }
 
   changeClass(size){
@@ -101,17 +94,14 @@ class MarkdownPreviewer extends React.Component {
   }
 
   Resize (id) {
-    let state_updated = this.state.isBig
-    if (this.state.isBig == id){
+    let state_updated = this.props.window
+
+    if (this.props.window == id){
       // if the isBig is the same as the id means it was already big and needs to be small
-      this.setState({
-        isBig: 'None'
-      });
+      this.props.submitChangeWindow('None')
       state_updated = 'None'
     }else{
-      this.setState({
-        isBig: id
-      })
+      this.props.submitChangeWindow(id)
       state_updated = id
     }
     this.changeClass(state_updated, state_updated)
@@ -120,16 +110,14 @@ class MarkdownPreviewer extends React.Component {
   componentDidMount(){
     // const startingText = "# Welcome to my React Markdown Previewer! \n ## This is a sub-heading... \n ### And here's some other cool stuff: \n Heres some code, `<div></div>`, between 2 backticks. \n ``` \n // this is multi-line code: \n function anotherExample(firstLine, lastLine) { \n if (firstLine == '```' && lastLine == '```') { \n return multiLineCode; \n } \n } \n ``` \n You can also make text **bold**... whoa! \n Or _italic_. \n Or... wait for it... **_both!_** \n And feel free to go crazy ~~crossing stuff out~~. \n There's also [links](https://www.freecodecamp.org), and \n > Block Quotes! \n And if you want to get really crazy, even tables: \n Wild Header | Crazy Header | Another Header? \n ------------ | ------------- | ------------- \n Your content can | be here, and it | can be here.... \n And here. | Okay. | I think we get it. \n - And of course there are lists. \n   - Some are bulleted. \n      - With different indentation levels. \n         - That look like this. \n 1. And there are numbered lists too. \n 1. Use just 1s if you want! \n 1. And last but not least, let's not forget embedded images: \n ![freeCodeCamp Logo](https://cdn.freecodecamp.org/testable-projects-fcc/images/fcc_secondary.svg)"
     const startingText = "# Welcome to my React Markdown Previewer! \n ## This is a sub-heading... \n ### And here's some other cool stuff: \n Heres some code, `<div></div>`, between 2 backticks. \n ``` \n // this is multi-line code: \n function anotherExample(firstLine, lastLine) { \n if (firstLine == '```' && lastLine == '```') { \n return multiLineCode; \n } \n } \n ``` \n You can also make text **bold**... whoa! \n Or _italic_. \n Or... wait for it... **_both!_** \n And feel free to go crazy ~~crossing stuff out~~. \n There's also [links](https://www.freecodecamp.org), and \n > Block Quotes! \n And if you want to get really crazy, even tables: \n Wild Header | Crazy Header | Another Header? \n ------------ | ------------- | ------------- \n Your content can | be here, and it | can be here.... \n And here. | Okay. | I think we get it. \n - And of course there are lists. \n   - Some are bulleted. \n      - With different indentation levels. \n         - That look like this. \n 1. And there are numbered lists too. \n 1. Use just 1s if you want! \n 1. And last but not least, let's not forget embedded images:"
-    this.setState({
-      input: startingText
-    });
+    this.props.submitChangeText(startingText)
   };
   
   render() {
     return (
       <div className="container-base p-0">
-        <Editor text={this.state.input} handleChange={this.handleChange} size={this.state.isBig} Resize={this.Resize} />
-        <Previewer markdown={this.getMarkdown()} size={this.state.isBig} Resize={this.Resize} />
+        <Editor text={this.props.input} handleChange={this.handleChange} size={this.props.window} Resize={this.Resize} />
+        <Previewer markdown={this.getMarkdown()} size={this.props.window} Resize={this.Resize} />
       </div>
     );
   }

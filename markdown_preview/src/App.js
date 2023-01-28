@@ -13,7 +13,7 @@ import { markdownReducer } from './Redux/markdownReducer'
 function App() { 
 
   const myStore = configureStore({
-    reducer: markdownteReducer,
+    reducer: markdownReducer,
     devTools: process.env.NODE_ENV !== 'production'
   })
 

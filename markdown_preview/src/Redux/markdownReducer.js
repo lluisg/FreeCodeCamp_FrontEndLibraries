@@ -1,61 +1,23 @@
-import randomColor from "randomcolor";
 import { createAction, createReducer } from '@reduxjs/toolkit'
 
-const CHANGEQUOTE = "CHANGE QUOTE"
-const LOWEROPACITY = "LOWER OPACITY"
-const INCREASEOPACITY = "INCREASE OPACITY"
+const CHANGETEXT = "CHANGE TEXT"
+const CHANGEWINDOW = "CHANGE WINDOW SIZE"
 
-const changeQuote = createAction(CHANGEQUOTE)
-const incrementOP = createAction(INCREASEOPACITY)
-const decrementOP = createAction(LOWEROPACITY)
+const changeText = createAction(CHANGETEXT)
+const changeWindow = createAction(CHANGEWINDOW)
 
 const initialState = {
-  quote: "Unknown3",
-  author: "Unknown3",
-  opacity: 1,
-  color: "green"
-}
+  input: "",
+  window: 'None',
+};
 
-export const quoteReducer = createReducer(initialState, (builder) => {
+export const markdownReducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(changeQuote, (state, action) => {
-      let rand_color = randomColor()
-      state.quote = action.payload.quote
-      state.author = action.payload.author
-      state.color = rand_color
+    .addCase(changeText, (state, action) => {
+      state.input = action.payload.text
     })
-    .addCase(decrementOP, (state, action) => {
-      state.opacity = 0
-    })
-    .addCase(incrementOP, (state, action) => {
-      state.opacity = 1
+    .addCase(changeWindow, (state, action) => {
+      state.window = action.payload.window
     })
     .addDefaultCase((state, action) => {})
 })
-
-
-// export const quoteReducer = (state=initialState, action) => {
-//   switch (action.type) {
-
-//     case CHANGEQUOTE:
-//       let rand_color = randomColor()
-//       return ({
-//         author: action.author,
-//         quote: action.quote,
-//         color: rand_color
-//       });
-
-//     case LOWEROPACITY:
-//       return ({
-//         opacity: 0
-//       });
-
-//     case INCREASEOPACITY:
-//       return ({
-//         opacity: 1
-//       });
-
-//     default:
-//       return state;
-//     } 
-// };
