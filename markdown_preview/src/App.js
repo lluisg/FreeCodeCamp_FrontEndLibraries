@@ -18,7 +18,6 @@ function App() {
   })
 
   return (
-    // <Provider store={store}>
     <Provider store={myStore}>
       <Container />
     </Provider>
