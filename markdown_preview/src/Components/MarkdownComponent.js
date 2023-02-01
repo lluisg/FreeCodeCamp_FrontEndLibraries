@@ -116,6 +116,7 @@ class MarkdownPreviewer extends React.Component {
   render() {
     return (
       <div className="container-base p-0">
+        <a href="https://markdown-previewer.freecodecamp.rocks/" target="_blank">original web</a>
         <Editor text={this.props.input} handleChange={this.handleChange} size={this.props.window} Resize={this.Resize} />
         <Previewer markdown={this.getMarkdown()} size={this.props.window} Resize={this.Resize} />
       </div>

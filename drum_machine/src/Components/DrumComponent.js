@@ -137,6 +137,7 @@ class DrumMachine extends React.Component {
                                               });
     return (
       <div className="base-container">
+      <a id="link_original" href="https://drum-machine.freecodecamp.rocks/" target="_blank">original web</a>
         <div className='container-drum'>
           <a className="logo">FCC<FontAwesomeIcon icon={faFreeCodeCamp} className="" /></a>
           <div id="drum-machine">
