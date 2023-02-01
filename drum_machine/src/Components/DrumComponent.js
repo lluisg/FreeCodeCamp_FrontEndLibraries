@@ -10,7 +10,7 @@ import sounds from "./sounds"
 
 const ButtonsDrum = (props) => {
   return (
-    <button id={props.sound} onClick={()=>props.handleClick(props.sound, props.letter)} className="drum-pad p-4 rounded border-0">
+    <button id={props.sound} onClick={()=>props.handleClick(props.sound, props.letter)} className="drum-pad">
       <b>{props.letter}</b>
       <audio id={props.letter} src={props.src} className="clip"></audio>
     </button>
@@ -22,10 +22,9 @@ const ButtonsDrum = (props) => {
 const Options = (props) => {
   return (
     <div className="options-container p-0 m-0">
-      <a className="logo">FCC<FontAwesomeIcon icon={faFreeCodeCamp} className="" /></a>
       <ButtonOption name="Power" onClick={props.changePower} />
       <p id="display" className='my-3'>{props.value}</p>
-      <Slider onChange={props.changeVolume} />
+      <Slider volume={props.volume} onChange={props.changeVolume} />
       <ButtonOption name="Bank" onClick={props.changeBank} />
     </div>
     );
@@ -33,13 +32,13 @@ const Options = (props) => {
 
 function Slider(props) {
   return(
-    <input type="range" min="1" max="100" value="50" onChange={()=>props.onChange(this.value)} />
+    <input id="slider" type="range" min="0" max="100" step="1" value={props.volume} onChange={props.onChange} />
   );
 }
 
 function ButtonOption(props) {
   return(
-    <div id={props.name} className='btn-onoff mt-3'>
+    <div id={props.name} className='btn-onoff mt-3 mb-1'>
       <p className='p-0 m-0'><b>{props.name}</b></p>
       <div className="container-onoff p-1">
         <div id={props.name=='Power'?'power-btn-off':'bank-btn-off'} className="btn-off hide-btn" onClick={props.onClick}></div>
@@ -55,13 +54,6 @@ function ButtonOption(props) {
 class DrumMachine extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      start_text: '... ',
-      current_text: '... ',
-      current_bank: 'Smooth Piano Kit',
-      power: true,
-      volume: 50
-    }
 
     this.handleClick = this.handleClick.bind(this);
     this.handleKey = this.handleKey.bind(this);
@@ -71,24 +63,23 @@ class DrumMachine extends React.Component {
   }
 
   handleClick(song, key) {
-    const audio = document.getElementById(key)
-    audio.play()
-
     const btn_pressed = document.getElementById(song)
-    btn_pressed.classList.add('using-sound')
+    btn_pressed.classList.add('btn-active')
     setTimeout(() => {
-      btn_pressed.classList.remove('using-sound')
-      
-    }, 500);
-    
+      btn_pressed.classList.remove('btn-active')
+    }, 200);  
 
-    this.setState({
-      current_text: song
-    })
+    if (this.props.power){
+      const audio = document.getElementById(key)
+      audio.volume = this.props.volume/100;
+      audio.play()
+ 
+      this.props.submitChangeText(song)
+    }
   };
 
   handleKey(e){
-    const press = sounds.find(
+    const press = sounds[this.props.bank].find(
       item => item.key === e.key.toUpperCase()
     );
     if (press){
@@ -109,45 +100,35 @@ class DrumMachine extends React.Component {
     let btnoff = document.getElementById(id_off)
 
     if(condition){
-      // console.log('on->off')
       btnon.classList.add("hide-btn");
       btnoff.classList.remove("hide-btn");
     }else{
-      // console.log('off->on')
       btnon.classList.remove("hide-btn");
       btnoff.classList.add("hide-btn");
     }
-
   }
 
   changeBank(){
-    this.changeButtonPosition('bank-btn-on', 'bank-btn-off', this.state.current_bank=='Smooth Piano Kit')
+    this.changeButtonPosition('bank-btn-on', 'bank-btn-off', this.props.bank=='Smooth Piano Kit')
 
-    this.state.current_bank === 'Heater Kit'
-      ? this.setState({current_bank: 'Smooth Piano Kit', current_text: 'Smooth Piano Kit'})
-      : this.setState({current_bank: 'Heater Kit', current_text: 'Heater Kit'})
+    this.props.bank === 'Heater Kit'
+      ? this.props.submitChangeBank('Smooth Piano Kit')
+      : this.props.submitChangeBank('Heater Kit')
     console.log('change bank')
   }
 
   changePower(){
-    this.changeButtonPosition('power-btn-on', 'power-btn-off', this.state.power)
-
-    this.setState({
-      power: !this.state.power,
-      current_text: this.state.start_text
-    });
+    this.changeButtonPosition('power-btn-on', 'power-btn-off', this.props.power)
+    this.props.submitChangePower();
     console.log('change power')
   }
 
-  changeVolume(volume){
-    this.setState({
-      volume: volume,
-      current_text: 'Volume: '+volume
-    })
+  changeVolume(e){
+    this.props.submitChangeVolume(e.target.value)
   }
 
   render() {
-    const drumpads = sounds[this.state.current_bank].map(element => {  return  <ButtonsDrum key={element.id}
+    const drumpads = sounds[this.props.bank].map(element => {  return  <ButtonsDrum key={element.id}
                                                                                             sound={element.sound}
                                                                                             letter={element.key}
                                                                                             src={element.src}
@@ -156,14 +137,14 @@ class DrumMachine extends React.Component {
                                               });
     return (
       <div className="base-container">
-        <div id="drum-machine">
-          <div className="grid-btns p-0 m-4">
-            {drumpads}
+        <div className='container-drum'>
+          <a className="logo">FCC<FontAwesomeIcon icon={faFreeCodeCamp} className="" /></a>
+          <div id="drum-machine">
+            <div className="grid-btns p-0 m-4">
+              {drumpads}
+            </div>
+            <Options value={this.props.text} volume={this.props.volume} changePower={this.changePower} changeBank={this.changeBank} changeVolume={this.changeVolume} />
           </div>
-          BUTTONS QUAN CLICKES
-          SLIDER
-          CANVIAR LOGO I TITOL DE LA WEB DE TOTS ELS PROJECTES FINS ARA, ESTA EL PREDETERMINAT DE REACT
-          <Options value={this.state.current_text} changePower={this.changePower} changeBank={this.changeBank} changeVolume={this.changeVolume} />
         </div>
       </div>
     );

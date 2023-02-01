@@ -1,20 +1,25 @@
 import { connect } from 'react-redux';
 
-import MarkdownComponent from '../Components/MarkdownComponent';
-import { changeText, changeWindow } from './actions'
+import DrumComponent from '../Components/DrumComponent';
+import { changeText, changeVolume, changePower, changeBank } from './actions'
 
 const mapStateToProps = state => {
   return {
-    input: state.input,
-    window: state.window,
+    start_text: state.start_text,
+    text: state.text,
+    volume: state.volume,
+    power: state.power,
+    bank: state.bank
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     submitChangeText: (input) => {dispatch(changeText(input))},
-    submitChangeWindow: (window) => {dispatch(changeWindow(window))},
+    submitChangeVolume: (volume) => {dispatch(changeVolume(volume))},
+    submitChangePower: () => {dispatch(changePower())},
+    submitChangeBank: (bank) => {dispatch(changeBank(bank))},
   };
 };
 
-export const Container = connect(mapStateToProps, mapDispatchToProps)(MarkdownComponent);
+export const Container = connect(mapStateToProps, mapDispatchToProps)(DrumComponent);

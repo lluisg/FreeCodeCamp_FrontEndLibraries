@@ -1,5 +1,7 @@
 const CHANGETEXT = "CHANGE TEXT"
-const CHANGEWINDOW = "CHANGE WINDOW SIZE"
+const CHANGEVOLUME = "CHANGE VOLUME"
+const CHANGEPOWER = "CHANGE POWER"
+const CHANGEBANK = "CHANGE BANK"
 
 export function changeText(input) {
   return {
@@ -10,11 +12,26 @@ export function changeText(input) {
   }
 }
 
-export function changeWindow(windowBig) {
+export function changeVolume(input) {
   return {
-    type: CHANGEWINDOW,
+    type: CHANGEVOLUME,
     payload: {
-      window: windowBig
+      volume: input
+    }
+  }
+}
+
+export function changePower() {
+  return {
+    type: CHANGEPOWER,
+  }
+}
+
+export function changeBank(input) {
+  return {
+    type: CHANGEBANK,
+    payload: {
+      bank: input
     }
   }
 }

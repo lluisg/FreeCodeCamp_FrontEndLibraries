@@ -4,24 +4,22 @@ import './App.css';
 // for React
 import React, { useState, useEffect, useReducer } from 'react';
 // // for Redux
-// import { Provider, useSelector, useDispatch} from 'react-redux'
-// import { Container } from './Redux/container';
-// import { configureStore } from '@reduxjs/toolkit'
+import { Provider, useSelector, useDispatch} from 'react-redux'
+import { Container } from './Redux/container';
+import { configureStore } from '@reduxjs/toolkit'
 
-// import { markdownReducer } from './Redux/markdownReducer'
-import DrumMachine from './Components/DrumComponent'
+import { drumReducer } from './Redux/drumReducer'
 
 function App() {
-  // const myStore = configureStore({
-  //   reducer: markdownReducer,
-  //   devTools: process.env.NODE_ENV !== 'production'
-  // })
+  const myStore = configureStore({
+    reducer: drumReducer,
+    devTools: process.env.NODE_ENV !== 'production'
+  })
 
   return (
-    // <Provider store={myStore}>
-      // <Container />
-    // </Provider>
-    <DrumMachine />
+    <Provider store={myStore}>
+      <Container />
+    </Provider>
     );
 }
 

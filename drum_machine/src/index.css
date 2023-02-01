@@ -39,23 +39,33 @@ code {
   width: 100%;
   height: 100vh;
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   background-color: var(--gray-bg);
 }
 
-#drum-machine{
+.container-drum{
   width: 650px;
   max-width: 95%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   background-color: var(--gray-display);
   border: 5px solid var(--orange-border);
-  display: flex;
+}
 
+#drum-machine{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
 }
 
 
 /* ------------------------------ BUTTONS DRUMS -------------------------------------------- */
-.grid-btns{
+.grid-btns {
   width: 50%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -64,13 +74,17 @@ code {
   row-gap: 1rem;
 }
 
-.drum-pad{
+.drum-pad {
   background-color: var(--gray-btn);
   box-shadow: 2px 2px 5px black;
+  border:  none;
+  border-radius: 5%;
 }
 
-.using-sound{
+.btn-active {     
   background-color: var(--orange-btn);
+  box-shadow: none;
+  transform: translateY(3px);
 }
 
 
@@ -93,8 +107,7 @@ code {
 }
 
 #display{
-  width: 200px;
-  max-width: 90%;
+  width: 80%;
   margin: 15px auto;
   padding: 15px;
   background-color: var(--gray-btn);
@@ -132,38 +145,51 @@ code {
 
 /* ---------------------- SLIDER ----------------------------------------------------- */
 
-.slidecontainer {
-  width: 100%;
-  border: 2px solid green;
-}
-
-.slider {
+#slider {
   -webkit-appearance: none;
-  width: 100%;
-  height: 25px;
-  background: #d3d3d3;
+  width: 80%;
+  height: 10px;
+  background: darkslategray;
   outline: none;
+  border: 1px solid black;
+  box-shadow: 2px 2px 2px black;
   opacity: 0.7;
   -webkit-transition: .2s;
   transition: opacity .2s;
 }
 
-.slider:hover {
-  opacity: 1;
-}
-
-.slider::-webkit-slider-thumb {
+#slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 25px;
-  height: 25px;
-  background: #04AA6D;
+  width: 10px;
+  height: 30px;
+  border-radius: 5px;
+  background: var(--blue-btn);
+  border: 1px solid black;
   cursor: pointer;
 }
 
-.slider::-moz-range-thumb {
-  width: 25px;
-  height: 25px;
-  background: #04AA6D;
+#slider::-moz-range-thumb {
+  width: 10px;
+  height: 30px;
+  border-radius: 5px;
+  background: var(--blue-btn);
+  border: 1px solid black;
   cursor: pointer;
+}
+
+
+@media (max-width: 500px) {
+  #drum-machine{
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .grid-btns{
+    width: 80%;
+  }
+
+  .drum-pad{
+    padding: 100px auto;
+  }
 }
