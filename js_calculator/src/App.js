@@ -1,25 +1,27 @@
 import logo from './logo.svg';
 import './App.css';
 
+// for React
+import React, { useState, useEffect, useReducer } from 'react';
+// for Redux
+import { Provider, useSelector, useDispatch} from 'react-redux'
+import { Container } from './Redux/container';
+import { configureStore } from '@reduxjs/toolkit'
+
+import { calculatorReducer } from './Redux/calculatorReducer'
+import JSCalculator from './Components/CalculatorComponent'
+
 function App() {
+  const myStore = configureStore({
+    reducer: calculatorReducer,
+    devTools: process.env.NODE_ENV !== 'production'
+  })
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Provider store={myStore}>
+      <Container />
+    </Provider>
+    );
 }
 
 export default App;
