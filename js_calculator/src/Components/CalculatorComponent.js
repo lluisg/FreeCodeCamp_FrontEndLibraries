@@ -128,15 +128,13 @@ class JSCalculator extends React.Component {
         if (this.props.validDot){ // if previous is a . does nothing
           if(this.props.prev_key == 'AC' || this.props.prev_key == '='){ //if the formula is empty or previous an =, it starts with 0.
             this.props.submitChangeFormula('0' + key, null)
-            this.props.submitChangeDisplay(this.props.display + key)
+            this.props.submitChangeDisplay('0' + key)
+          }else if (includesElement(this.props.prev_key, ['+', '*', '/', '-'])){ //if previous an operator, adds a 0 before the .
+            this.props.submitChangeFormula(this.props.formula + '0' + key, null)
+            this.props.submitChangeDisplay('0' + key)
           }else{
-            if (includesElement(this.props.prev_key, ['+', '*', '/', '-'])){ //if previous an operator, adds a 0 before the .
-              this.props.submitChangeFormula(this.props.formula + '0' + key, null)
-              this.props.submitChangeDisplay('0' + key)
-            }else{
-              this.props.submitChangeFormula(this.props.formula + key, null)
-              this.props.submitChangeDisplay(this.props.display + key)
-            }
+            this.props.submitChangeFormula(this.props.formula + key, null)
+            this.props.submitChangeDisplay(this.props.display + key)
           }
           this.props.submitChangeKey(key)
           this.props.submitInvalidDot()
