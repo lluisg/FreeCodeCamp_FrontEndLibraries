@@ -107,7 +107,7 @@ code {
   text-align: end;
 }
 
-#value-display{
+#display{
   color: white;
   text-align: end;
 }
@@ -132,21 +132,21 @@ code {
   font-weight: 600;
 }
 
-.btn-pad[id="padAC"]{
+.btn-pad[id="clear"]{
   background-color: var(--red-btn);
   grid-column: 1 / span 2;
 }
 
-.btn-pad[id="pad/"], .btn-pad[id="padx"], .btn-pad[id="pad-"], .btn-pad[id="pad+"]{
+.btn-pad[id="add"], .btn-pad[id="subtract"], .btn-pad[id="multiply"], .btn-pad[id="divide"]{
   background-color: var(--graylight-btn);
 }
 
-.btn-pad[id="pad="]{
+.btn-pad[id="equals"]{
   background-color: var(--blue-btn);
   grid-column: 4;
   grid-row: 4 / span 2;
 }
 
-.btn-pad[id="pad0"]{
+.btn-pad[id="zero"]{
   grid-column: 1 / span 2;
 }

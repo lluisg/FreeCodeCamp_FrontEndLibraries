@@ -9,7 +9,6 @@ import { Container } from './Redux/container';
 import { configureStore } from '@reduxjs/toolkit'
 
 import { calculatorReducer } from './Redux/calculatorReducer'
-import JSCalculator from './Components/CalculatorComponent'
 
 function App() {
   const myStore = configureStore({
@@ -19,8 +18,9 @@ function App() {
 
   return (
     <Provider store={myStore}>
-      <Container />
+     <Container />
     </Provider>
+    // <JSCalculator />
     );
 }
 
