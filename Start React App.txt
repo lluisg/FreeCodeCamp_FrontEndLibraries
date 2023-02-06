@@ -35,9 +35,7 @@ where XXX is the name of the icon you are interested
 
 ---------------------------- REDUX -------------------------------
 install
-	npm install redux
-	npm install react-redux
-	npm install @reduxjs/toolkit
+	npm install redux react-redux @reduxjs/toolkit
 
 add to the App.js
 	import { Provider, useSelector, useDispatch} from 'react-redux'
