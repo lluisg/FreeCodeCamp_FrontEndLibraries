@@ -17,7 +17,9 @@ add at the start of the index.js file
 	import $ from 'jquery';
 	import Popper from 'popper.js';
 
+o
 
+https://react-bootstrap.github.io/getting-started/introduction/
 ---------------------------- INSTALL FONTAWESOME -------------------------------
 
 npm i -S @fortawesome/fontawesome-svg-core @fortawesome/react-fontawesome @fortawesome/free-regular-svg-icons @fortawesome/free-solid-svg-icons @fortawesome/free-brands-svg-icons
